@@ -22,13 +22,13 @@ defmodule ContactServer.ContactStore do
   end
 
   def handle_call({:create, contact}, _from, contacts) do
-		:ets.insert(contacts, contact)
+		:ets.insert(contacts, {:contact, contact})
     {:reply, {:ok}, contacts}
   end
 
   @impl true
   def handle_call({:get_all}, _from, contacts) do
-		results = :ets.tab2list(contacts)
+		results = :ets.select(contacts, [{{:_, :"$1"}, [], [:"$1"]}])
     {:reply, {:ok, results}, contacts}
   end
 
