@@ -22,6 +22,8 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 contacts_server-*.tar
 
+# Ignore generated escript files
+apps/contact_cli/contact_cli
 
 # Temporary files for e.g. tests
 /tmp

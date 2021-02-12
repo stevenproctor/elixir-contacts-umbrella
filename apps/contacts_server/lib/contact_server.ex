@@ -9,7 +9,7 @@ defmodule ContactServer do
   def load_line(line)do
     line
       |> ContactServer.Contact.from_line
-      |> ContactServer.ContactStore.create_contact(:contacts)
+      |> create_contact
   end
 
 	@doc ~S"""
@@ -108,7 +108,8 @@ defmodule ContactServer do
   end
 
   def contacts do
-    ContactServer.ContactStore.get_all(:contacts)
+    {:ok, contacts} = ContactServer.ContactStore.get_all(:contacts)
+    contacts
   end
 
   defp create_contact(error = {:error, _}) do
@@ -118,9 +119,6 @@ defmodule ContactServer do
     ContactServer.ContactStore.create(:contacts, contact)
   end
 
-  defp email_compare(contact) do
-    contact
-  end
   defp email_compare(contact1, contact2) do
     cond do
       contact1.email == contact2.email

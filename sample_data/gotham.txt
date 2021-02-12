@@ -1,0 +1,4 @@
+Grayson Dick foo@example.com blue 1995-12-31
+Gordon | Barbara | bar@example.com | black | 1996-10-13
+Gordon, James, jim@example.com, blue, 1965-02-14
+Drake Tim baz@example.com red 2005-07-24
