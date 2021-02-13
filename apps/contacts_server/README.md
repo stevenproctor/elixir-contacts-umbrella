@@ -38,3 +38,11 @@ orders.
 ```
 $ apps/contact_cli/contact_cli sample_data/gotham.txt
 ```
+
+### Web app
+
+To start the web app run
+
+```
+$ mix phx.server
+```
