@@ -28,16 +28,25 @@ defmodule ContactServer.Contact do
   end
 
 
+  defp delimiters() do
+    [
+      ~r{ \| },
+      ~r{, },
+      ~r{ },
+    ]
+  end
+
   defp parse_line(line) do
-    cond do
-      5 == length(c = Regex.split(~r{ \| }, line)) ->
-        {:ok, c}
-      5 == length(c = Regex.split(~r{, }, line)) ->
-        {:ok, c}
-      5 == length(c = Regex.split(~r{ }, line)) ->
-        {:ok, c}
-      true
-        -> {:error, :unknown_delimiter}
+    delimiters()
+      |> Enum.find_value({:error, :unknown_delimiter}, &(try_parse(line, &1)))
+  end
+
+  defp try_parse(line, delimiter) do
+    case Regex.split(delimiter, line) do
+      c = [_, _, _, _, _]
+        -> {:ok, c}
+      _
+        -> nil
     end
   end
 
