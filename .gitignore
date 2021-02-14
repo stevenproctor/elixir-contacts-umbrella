@@ -19,6 +19,8 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-
 # Temporary files for e.g. tests
 /tmp
+
+# Ignore built escript files
+apps/contact_cli/contact_cli
